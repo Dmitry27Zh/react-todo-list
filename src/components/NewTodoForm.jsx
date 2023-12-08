@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 
 const NewTodoForm = ({ onSubmit }) => {
   const [newItem, setNewItem] = useState('')
@@ -20,6 +21,10 @@ const NewTodoForm = ({ onSubmit }) => {
       <button className="btn">Add</button>
     </form>
   )
+}
+
+NewTodoForm.propTypes = {
+  onSubmit: PropTypes.func,
 }
 
 export default NewTodoForm
