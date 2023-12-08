@@ -9,6 +9,17 @@ function App() {
     const newTodo = { id: crypto.randomUUID(), title: newItem, completed: false }
     setTodos((prevState) => [...prevState, newTodo])
   }
+  function toggleTodo(id) {
+    setTodos((prevState) => {
+      return prevState.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, completed: !todo.completed }
+        } else {
+          return todo
+        }
+      })
+    })
+  }
 
   return (
     <>
@@ -25,7 +36,7 @@ function App() {
           return (
             <li key={todo.id}>
               <label>
-                <input type="checkbox" checked={todo.completed} />
+                <input type="checkbox" checked={todo.completed} onChange={() => toggleTodo(todo.id)} />
                 {todo.title}
               </label>
               <button className="btn btn-danger">Delete</button>
