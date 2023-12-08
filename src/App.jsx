@@ -20,6 +20,9 @@ function App() {
       })
     })
   }
+  function deleteTodo(id) {
+    setTodos((prevState) => prevState.filter((todo) => todo.id !== id))
+  }
 
   return (
     <>
@@ -39,7 +42,9 @@ function App() {
                 <input type="checkbox" checked={todo.completed} onChange={() => toggleTodo(todo.id)} />
                 {todo.title}
               </label>
-              <button className="btn btn-danger">Delete</button>
+              <button className="btn btn-danger" type="button" onClick={() => deleteTodo(todo.id)}>
+                Delete
+              </button>
             </li>
           )
         })}
