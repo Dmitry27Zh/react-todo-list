@@ -1,12 +1,11 @@
 import { useState } from 'react'
 import './App.css'
+import NewTodoForm from './components/NewTodoForm'
 
 function App() {
-  const [newItem, setNewItem] = useState('')
   const [todos, setTodos] = useState([])
-  function handleSubmit(e) {
-    e.preventDefault()
-    const newTodo = { id: crypto.randomUUID(), title: newItem, completed: false }
+  function addTodo(title) {
+    const newTodo = { id: crypto.randomUUID(), title, completed: false }
     setTodos((prevState) => [...prevState, newTodo])
   }
   function toggleTodo(id) {
@@ -26,13 +25,7 @@ function App() {
 
   return (
     <>
-      <form className="new-item-form" onSubmit={handleSubmit}>
-        <div className="form-row">
-          <label htmlFor="item">New Item</label>
-          <input type="text" id="item" value={newItem} onChange={(e) => setNewItem(e.target.value)} />
-        </div>
-        <button className="btn">Add</button>
-      </form>
+      {<NewTodoForm onSubmit={addTodo} />}
       <h1 className="header">Todo List</h1>
       <ul className="list">
         {todos.length === 0 && 'No Todos'}
