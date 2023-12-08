@@ -3,7 +3,7 @@ import './App.css'
 
 function App() {
   const [newItem, setNewItem] = useState('')
-  const [_, setTodos] = useState([])
+  const [todos, setTodos] = useState([])
   function handleSubmit(e) {
     e.preventDefault()
     const newTodo = { id: crypto.randomUUID(), title: newItem, completed: false }
@@ -21,20 +21,17 @@ function App() {
       </form>
       <h1 className="header">Todo List</h1>
       <ul className="list">
-        <li>
-          <label>
-            <input type="checkbox" />
-            Item1
-          </label>
-          <button className="btn btn-danger">Delete</button>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" />
-            Item2
-          </label>
-          <button className="btn btn-danger">Delete</button>
-        </li>
+        {todos.map((todo) => {
+          return (
+            <li key={todo.id}>
+              <label>
+                <input type="checkbox" checked={todo.completed} />
+                {todo.title}
+              </label>
+              <button className="btn btn-danger">Delete</button>
+            </li>
+          )
+        })}
       </ul>
     </>
   )
