@@ -1,22 +1,13 @@
 import PropTypes from 'prop-types'
+import TodoItem from './TodoItem'
 
 const TodoList = ({ todos, toggleTodo, deleteTodo }) => {
   return (
     <ul className="list">
       {todos.length === 0 && 'No Todos'}
-      {todos.map((todo) => {
-        return (
-          <li key={todo.id}>
-            <label>
-              <input type="checkbox" checked={todo.completed} onChange={() => toggleTodo(todo.id)} />
-              {todo.title}
-            </label>
-            <button className="btn btn-danger" type="button" onClick={() => deleteTodo(todo.id)}>
-              Delete
-            </button>
-          </li>
-        )
-      })}
+      {todos.map((todo) => (
+        <TodoItem key={todo.id} {...todo} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
+      ))}
     </ul>
   )
 }
