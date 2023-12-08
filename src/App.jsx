@@ -3,11 +3,11 @@ import './App.css'
 
 function App() {
   const [newItem, setNewItem] = useState('')
-  const [todos, setTodos] = useState([])
+  const [_, setTodos] = useState([])
   function handleSubmit(e) {
     e.preventDefault()
     const newTodo = { id: crypto.randomUUID(), title: newItem, completed: false }
-    setTodos([...todos, newTodo])
+    setTodos((prevState) => [...prevState, newTodo])
   }
 
   return (
