@@ -7,7 +7,7 @@ function App() {
   const [todos, setTodos] = useState(() => {
     const localTodos = localStorage.getItem('ITEMS')
 
-    return localTodos ? JSON.parse(localTodos) : []
+    return localTodos == null ? [] : JSON.parse(localTodos)
   })
   useEffect(() => {
     localStorage.setItem('ITEMS', JSON.stringify(todos))
